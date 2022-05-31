@@ -1,5 +1,7 @@
 package com.example.tourdebackend.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,34 +10,35 @@ public class Cykelhold {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "holdid")
-  private int holdid;
+  @Column(name = "id")
+  private int id;
   @Column(name = "holdname")
   private String holdName;
 
-  @OneToMany
+  @OneToMany(mappedBy = "cykelhold")
+  @JsonBackReference
   private List<Cykelrytter> cykelrytters;
 
   public Cykelhold() {
   }
 
   public Cykelhold(int holdid, String holdName) {
-    this.holdid = holdid;
+    this.id = holdid;
     this.holdName = holdName;
   }
 
   public Cykelhold(int holdid, String holdName, List<Cykelrytter> cykelrytters) {
-    this.holdid = holdid;
+    this.id = holdid;
     this.holdName = holdName;
     this.cykelrytters = cykelrytters;
   }
 
-  public int getHoldid() {
-    return holdid;
+  public int getId() {
+    return id;
   }
 
-  public void setHoldid(int holdid) {
-    this.holdid = holdid;
+  public void setId(int holdid) {
+    this.id = holdid;
   }
 
   public String getHoldName() {
@@ -57,7 +60,7 @@ public class Cykelhold {
   @Override
   public String toString() {
     return "Cykelhold{" +
-        "holdid=" + holdid +
+        "id=" + id +
         ", holdName='" + holdName + '\'' +
         ", cykelrytters=" + cykelrytters +
         '}';

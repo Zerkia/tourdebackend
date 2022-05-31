@@ -28,6 +28,8 @@ public class CykelrytterService {
 
     public Optional<Cykelrytter> readById(int id) { return cykelrytterRepository.findById(id); }
 
+    public List<Cykelrytter> readByHoldid(int holdid) { return cykelrytterRepository.findByHoldid(holdid);}
+
     public Cykelrytter update(Cykelrytter cykelrytter){
       return cykelrytterRepository.save(cykelrytter);
     }
